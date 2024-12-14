@@ -18,7 +18,7 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.sam.fetchweatherperiodically.databinding.ActivityMainBinding
-import com.sam.fetchweatherperiodically.workers.WeatherFetcher
+import com.sam.fetchweatherperiodically.workers.FetchWeatherWorker
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
             periodicButton.setOnClickListener{
-                periodicWorkRequest = PeriodicWorkRequest.Builder(WeatherFetcher::class.java,30,
+                periodicWorkRequest = PeriodicWorkRequest.Builder(FetchWeatherWorker::class.java,30,
                  TimeUnit.MINUTES)
                  .setConstraints(constraints)
                  .build()
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             fetchNow.setOnClickListener{
-                oneTimeWorkRequest = OneTimeWorkRequestBuilder<WeatherFetcher>()
+                oneTimeWorkRequest = OneTimeWorkRequestBuilder<FetchWeatherWorker>()
                     .setConstraints(constraints)
                     .build()
                 WorkManager.getInstance(this@MainActivity).enqueue(oneTimeWorkRequest)

@@ -9,8 +9,9 @@
         android:layout_height="match_parent"
         android:id="@+id/header_title"
         android:textStyle="bold"
-        android:text="Hisjdfksdkjlf lskjdf"
+        android:text="Header Title"
         android:textColor="@color/black"
         android:textSize="45dp"
+        android:textAlignment="center"
         />
 </LinearLayout>
